@@ -2,7 +2,7 @@ import numpy as np; import pandas as pd; from matplotlib import pyplot as plt
 from sklearn import linear_model; import statsmodels.api as sm
 import pymysql
 
-db = pymysql.connect(host = "localhost", user = "root", passwd = "apdvkd68", db = "kospi",  charset = "utf8")
+db = pymysql.connect(host = "localhost", user = "root", passwd = "###", db = "kospi",  charset = "utf8")
 cursor = db.cursor()
 code = pd.read_csv(r'C:\Users\myeon\Documents\카카오톡 받은 파일\stockCodeInfo.csv', engine='python', encoding='utf-8')
 kospi = pd.read_csv(r'C:\Users\myeon\Documents\카카오톡 받은 파일\kospi.csv', engine='python', encoding='utf-8', index_col=0).sort_values(by=['년/월/일'])
@@ -96,7 +96,6 @@ def stat_test(avg, num_forward = 10):
 
 new_codes, coef = train(cursor, 20130615, 20140614, codes, kospi) # 예상된 금리 인하: 2014 08 14
 abre = return_abre(cursor, 20140731, 20140910, new_codes, kospi, coef)
-print(abre)
 car = return_car(abre)
 avg = avg(car)
 plt.plot(avg)
@@ -127,7 +126,7 @@ avg4 = avg(car4)
 plt.plot(avg4)
 plt.show()
 result4 = stat_test(avg4)
-print(result3.summary())
+print(result4.summary())
 
 # 간단한 실험용 코드
 new_codes, coef = train(cursor, 20140101, 20150101, codes, kospi)
